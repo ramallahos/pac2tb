@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+if [[ $1 == "-Q" ]] || [[ $1 == "-Qs" ]] || [[ $1 == "-Qq" ]] ;
+then
+    pacman $1 | nc termbin.com 9999
+elif [[ $1 == "" ]] ;
+then
+    pacman -Qq | nc termbin.com 9999
+else
+    tput setaf 2 bold
+    echo "ERROR: $1 is not a valid flag"
+    tput sgr0
+    pacman -Qq | nc termbin.com 9999
+fi
